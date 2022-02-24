@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Tracker</title>
+</head>
+<body>
+    <div th:switch="${t_project}">
+        <h2 th:case="null">No projects found!</h2>
+        <div th:case="*">
+            <h2>Projects</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>start_date</th>
+                    <th>completion_date</th>
+                    <th>priority</th>
+                    <th>status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="t_project : ${t_project}">
+                    <td th:text="${t_project.id}"></td>
+                    <td th:text="${t_project.name}"></td>
+                    <td th:text="${t_project.start_date}"></td>
+                    <td th:text="${t_project.completion_date}"></td>
+                    <td th:text="${t_project.priority}"></td>
+                    <td th:text="${t_project.status}"></td>
+                    <td><a th:href="@">Edit</a></td>
+                    <td><a th:href="@{user-delete/{id}(id=${project.id})}">Delete</a></td>
+                </tr>@{user-update/{id}(id=${project.id})}
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/user-create">Create user</a></p>
+    </div>
+</body>
+</html>
+
